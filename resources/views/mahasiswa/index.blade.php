@@ -6,14 +6,14 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">Data Mahasiswa
-                      <a href="{{ route('mahasiswa-create') }}" class="btn btn-md btn-primary float-right">Tambah Data</a> 
+                      <a href="{{ route('tambah-mahasiswa') }}" class="btn btn-md btn-primary float-right">Tambah Data Mahasiswa</a> 
                 </div>
 
                 <div class="card-body">
                    <div class="table-responsive">
                        <table class="table table-bordered">
                            <tr>
-                              <th>NO</th>
+                              <th>NO.</th>
                               <th>NPM</th>
                               <th>NAMA LENGKAP</th>
                               <th>TTL</th>
@@ -22,13 +22,16 @@
                               <th>ALAMAT</th>
                               <th>AKSI</th>
                           </tr>
-                           @foreach ($mahasiswa as $mhs)
+                          @php
+                              $no = 1;
+                          @endphp   
+                          @foreach ($mahasiswa as $mhs)
                             <tr>
-                                <td> {{ $mhs->id }} </td>
+                                <td> {{ $no++ }} </td>
                                 <td> {{ $mhs->npm }} </td>
-                                <td> {{ $mhs->nama_mahasiswa }} </td>
+                                <td> {{ $mhs->user->name }}</td>
                                 <td> {{ $mhs->tempat_lahir.','.$mhs->tanggal_lahir }} </td>
-                                <td> {{ $mhs->jenis_kelamin }} </td>
+                                <td> {{ $mhs->gender == 'L' ? 'Laki-Laki' : 'Perempuan' }} </td>
                                 <td> {{ $mhs->telepon }} </td>
                                 <td> {{ $mhs->alamat }} </td>
                                 <td>
